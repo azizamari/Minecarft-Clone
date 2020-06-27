@@ -11,9 +11,11 @@ public class Chunk : MonoBehaviour
     List<int> triangles = new List<int>();
     List<Vector2> uvs = new List<Vector2>();
 
-    bool[,,] voxelMap = new bool[VoxelData.chunkWidth, VoxelData.chunkHeight, VoxelData.chunkWidth];
+    byte[,,] voxelMap = new byte[VoxelData.chunkWidth, VoxelData.chunkHeight, VoxelData.chunkWidth];
+    World world;
     private void Start()
     {
+        world = GameObject.Find("World").GetComponent<World>();
         PopulateVoxelMap();
         CreateMeshData();
         CreateMesh();
@@ -26,7 +28,7 @@ public class Chunk : MonoBehaviour
             {
                 for (int z = 0; z < VoxelData.chunkWidth; z++)
                 {
-                    voxelMap[x, y, z] = true;
+                    voxelMap[x, y, z] = 0;
                 }
             }
         }
@@ -51,7 +53,7 @@ public class Chunk : MonoBehaviour
         int z = Mathf.FloorToInt(pos.z);
         if (x < 0 || x > VoxelData.chunkWidth - 1 || y < 0 || y > VoxelData.chunkHeight - 1 || z < 0 || z > VoxelData.chunkWidth - 1)
             return false;
-        return voxelMap [x,y,z];
+        return world.blockTypes[voxelMap[x,y,z]].isSolid;
     }
     void AddDataToChunk(Vector3 pos)
     {

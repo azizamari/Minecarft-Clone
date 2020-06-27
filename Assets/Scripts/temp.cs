@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chunk : MonoBehaviour
+public class tempp : MonoBehaviour
 {
     public MeshRenderer meshRenderer;
     public MeshFilter meshFilter;
