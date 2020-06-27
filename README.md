@@ -1,2 +1,2 @@
 # Minecarft-Clone
-A Minecarft Clone using unity and c#
+A Minecarft Clone using Unity and c#
