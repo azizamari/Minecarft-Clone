@@ -5,7 +5,13 @@ using UnityEngine;
 public static class VoxelData
 {
     public static readonly int chunkWidth=5;
-    public static readonly int chunkHeight=5;
+    public static readonly int chunkHeight=15;
+    public static readonly int worldSizeInChunks=5;
+
+    public static readonly int textureAtlasSizeInBlocks = 4;
+    public static float normalizeBlockTextureSize { 
+        get { return 1.0f / (float)textureAtlasSizeInBlocks; }
+    }
     public static readonly Vector3[] voxelVerts = new Vector3[8]
     {
         new Vector3(0f,0f,0f),
