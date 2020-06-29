@@ -22,9 +22,48 @@ public class World : MonoBehaviour
             }
         }
     }
+    public byte getVoxel(Vector3 pos)
+    {
+        if (!isVoxelInWorld(pos))
+        {
+            return 0;
+        }
+        if (pos.y < 1)
+        {
+            return 1;
+        }
+        else if (pos.y < 10)
+        {
+            return 2;
+        }
+        else if (pos.y < 14)
+        {
+            return  4;
+        }
+        else
+        {
+            return  3;
+        }
+    }
     void createNewChunk(int x, int z)
     {
         chunks[x,z]= new Chunk(new ChunkCoord(x, z), this);
+    }
+    bool isChunkInWorld (ChunkCoord coord)
+    {
+        if (coord.x > 0&&coord.x<VoxelData.worldSizeInChunks-1&&coord.z>0&&coord.z<VoxelData.worldSizeInChunks)
+        {
+            return true;
+        }
+        else return false;
+    }
+    bool isVoxelInWorld(Vector3 pos)
+    {
+        if (pos.x >= 0 && pos.x < VoxelData.worldSizeInVoxels && pos.y >= 0 && pos.y < VoxelData.chunkHeight && pos.z >= 0 && pos.z < VoxelData.worldSizeInVoxels)
+        {
+            return true;
+        }
+        else return false;
     }
 }
 [System.Serializable]
