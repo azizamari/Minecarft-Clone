@@ -6,6 +6,8 @@ public class World : MonoBehaviour
 {
     public Material material;
     public BlockType[] blockTypes;
+
+    Chunk[,] chunks = new Chunk[VoxelData.worldSizeInChunks, VoxelData.worldSizeInChunks];
     private void Start()
     {
         generateWorld();
@@ -16,9 +18,13 @@ public class World : MonoBehaviour
         {
             for (int z = 0; z < VoxelData.worldSizeInChunks; z++)
             {
-                Chunk newChunk = new Chunk(new ChunkCoord(x, z), this);
+                createNewChunk(x, z);
             }
         }
+    }
+    void createNewChunk(int x, int z)
+    {
+        chunks[x,z]= new Chunk(new ChunkCoord(x, z), this);
     }
 }
 [System.Serializable]
