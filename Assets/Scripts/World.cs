@@ -4,27 +4,87 @@ using UnityEngine;
 
 public class World : MonoBehaviour
 {
+    public Transform player;
+    public Vector3 spawnPosition;
+
     public Material material;
     public BlockType[] blockTypes;
 
     Chunk[,] chunks = new Chunk[VoxelData.worldSizeInChunks, VoxelData.worldSizeInChunks];
+    List<ChunkCoord> activeChunks = new List<ChunkCoord>();
+    ChunkCoord playerLastChunkCoord;
+    ChunkCoord playerChunkCoord;
     private void Start()
     {
-        generateWorld();
+        playerLastChunkCoord=GetChunkCoordFromVector3(player.position);
+        spawnPosition = new Vector3((VoxelData.worldSizeInChunks * VoxelData.chunkWidth) / 2f, VoxelData.chunkHeight+2f, (VoxelData.worldSizeInChunks * VoxelData.chunkWidth) / 2f);
+        player.position = spawnPosition;
+        GenerateWorld();
     }
-    void generateWorld()
+    private void Update()
     {
-        for (int x = 0; x < VoxelData.worldSizeInChunks; x++)
+        playerChunkCoord = GetChunkCoordFromVector3(player.position);
+        if (!playerChunkCoord.Equals(playerLastChunkCoord))
         {
-            for (int z = 0; z < VoxelData.worldSizeInChunks; z++)
+            CheckViewDistance();
+            playerLastChunkCoord = playerChunkCoord; //delete this if bugged
+        }
+    }
+    ChunkCoord GetChunkCoordFromVector3(Vector3 pos)
+    {
+        int x = Mathf.FloorToInt(pos.x / VoxelData.chunkWidth);
+        int z = Mathf.FloorToInt(pos.z / VoxelData.chunkWidth);
+        return new ChunkCoord(x, z);
+    }
+    void CheckViewDistance()
+    {
+        ChunkCoord coord= GetChunkCoordFromVector3(player.position);
+
+        List<ChunkCoord> previouslyActiveChunks = new List<ChunkCoord>(activeChunks);
+
+        for(int x = coord.x - VoxelData.viewDistanceInChunks; x < coord.x + VoxelData.viewDistanceInChunks; x++)
+        {
+            for (int z = coord.z - VoxelData.viewDistanceInChunks; z < coord.z + VoxelData.viewDistanceInChunks; z++)
             {
-                createNewChunk(x, z);
+                if (IsChunkInWorld(new ChunkCoord(x,z)))
+                {
+                    if (chunks[x, z] == null)
+                    {
+                        CreateNewChunk(x, z);
+                    }
+                    else if (!chunks[x, z].isActive)
+                    {
+                        chunks[x, z].isActive = true;
+                        activeChunks.Add(new ChunkCoord(x, z));
+                    }
+                }
+                for (int i = 0; i < previouslyActiveChunks.Count; i++)
+                { 
+                    if(previouslyActiveChunks[i].Equals(new ChunkCoord(x, z)))
+                    {
+                        previouslyActiveChunks.RemoveAt(i);
+                    }
+                }
+            }
+        }
+        foreach(var c in previouslyActiveChunks)
+        {
+            chunks[c.x,c.z].isActive=false;
+        }
+    }
+    void GenerateWorld()
+    {
+        for (int x = (VoxelData.worldSizeInChunks /2)-VoxelData.viewDistanceInChunks; x < (VoxelData.worldSizeInChunks / 2) + VoxelData.viewDistanceInChunks; x++)
+        {
+            for (int z = (VoxelData.worldSizeInChunks / 2) - VoxelData.viewDistanceInChunks; z < (VoxelData.worldSizeInChunks / 2) + VoxelData.viewDistanceInChunks; z++)
+            {
+                CreateNewChunk(x, z);
             }
         }
     }
-    public byte getVoxel(Vector3 pos)
+    public byte GetVoxel(Vector3 pos)
     {
-        if (!isVoxelInWorld(pos))
+        if (!IsVoxelInWorld(pos))
         {
             return 0;
         }
@@ -45,11 +105,12 @@ public class World : MonoBehaviour
             return  3;
         }
     }
-    void createNewChunk(int x, int z)
+    void CreateNewChunk(int x, int z)
     {
         chunks[x,z]= new Chunk(new ChunkCoord(x, z), this);
+        activeChunks.Add(new ChunkCoord(x, z));
     }
-    bool isChunkInWorld (ChunkCoord coord)
+    bool IsChunkInWorld (ChunkCoord coord)
     {
         if (coord.x > 0&&coord.x<VoxelData.worldSizeInChunks-1&&coord.z>0&&coord.z<VoxelData.worldSizeInChunks)
         {
@@ -57,7 +118,7 @@ public class World : MonoBehaviour
         }
         else return false;
     }
-    bool isVoxelInWorld(Vector3 pos)
+    bool IsVoxelInWorld(Vector3 pos)
     {
         if (pos.x >= 0 && pos.x < VoxelData.worldSizeInVoxels && pos.y >= 0 && pos.y < VoxelData.chunkHeight && pos.z >= 0 && pos.z < VoxelData.worldSizeInVoxels)
         {

@@ -41,7 +41,7 @@ public class Chunk
             {
                 for (int z = 0; z < VoxelData.chunkWidth; z++)
                 {
-                    voxelMap[x, y, z] = world.getVoxel(new Vector3(x,y,z)+position);
+                    voxelMap[x, y, z] = world.GetVoxel(new Vector3(x,y,z)+position);
                 }
             }
         }
@@ -83,7 +83,7 @@ public class Chunk
         int y = Mathf.FloorToInt(pos.y);
         int z = Mathf.FloorToInt(pos.z);
         if (!isVoxelInChunk(x,y,z))
-            return world.blockTypes[world.getVoxel(pos + position)].isSolid;
+            return world.blockTypes[world.GetVoxel(pos + position)].isSolid;
         return world.blockTypes[voxelMap[x,y,z]].isSolid;
     }
     void AddDataToChunk(Vector3 pos)
@@ -142,5 +142,17 @@ public class ChunkCoord
     {
         x = _x;
         z = _z;
+    }
+    public bool Equals(ChunkCoord other)
+    {
+        if (other == null)
+        {
+            return false;
+        }
+        else if (other.x == this.x && other.z == this.z)
+        {
+            return true;
+        }
+        return false;
     }
 }
