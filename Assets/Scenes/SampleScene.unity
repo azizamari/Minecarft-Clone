@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bac6695fc9d8d4b80a962d7d828ada, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  seed: 7489256
   player: {fileID: 1687258585}
   spawnPosition: {x: 0, y: 0, z: 0}
   material: {fileID: 2100000, guid: dc2d3b1cd94369d4b8c55459d04e08fb, type: 2}

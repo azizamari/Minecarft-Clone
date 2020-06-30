@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class World : MonoBehaviour
 {
+    public int seed;
+
     public Transform player;
     public Vector3 spawnPosition;
 
@@ -16,6 +18,7 @@ public class World : MonoBehaviour
     ChunkCoord playerChunkCoord;
     private void Start()
     {
+        Random.InitState(seed);
         playerLastChunkCoord=GetChunkCoordFromVector3(player.position);
         spawnPosition = new Vector3((VoxelData.worldSizeInChunks * VoxelData.chunkWidth) / 2f, VoxelData.chunkHeight+2f, (VoxelData.worldSizeInChunks * VoxelData.chunkWidth) / 2f);
         player.position = spawnPosition;
@@ -41,8 +44,9 @@ public class World : MonoBehaviour
         ChunkCoord coord= GetChunkCoordFromVector3(player.position);
 
         List<ChunkCoord> previouslyActiveChunks = new List<ChunkCoord>(activeChunks);
+        activeChunks.Clear();
 
-        for(int x = coord.x - VoxelData.viewDistanceInChunks; x < coord.x + VoxelData.viewDistanceInChunks; x++)
+        for (int x = coord.x - VoxelData.viewDistanceInChunks; x < coord.x + VoxelData.viewDistanceInChunks; x++)
         {
             for (int z = coord.z - VoxelData.viewDistanceInChunks; z < coord.z + VoxelData.viewDistanceInChunks; z++)
             {
@@ -92,18 +96,16 @@ public class World : MonoBehaviour
         {
             return 1;
         }
-        else if (pos.y < 10)
+        else if (pos.y == VoxelData.chunkHeight - 1)
         {
-            return 2;
+            float tempNoise = Noise.Get2Dperlin(new Vector2(pos.x, pos.y), 0, 0.1f);
+            if (tempNoise < 0.5)
+            {
+                return 3;
+            }
+            else return 2;
         }
-        else if (pos.y < 14)
-        {
-            return  4;
-        }
-        else
-        {
-            return  3;
-        }
+        else return 4;
     }
     void CreateNewChunk(int x, int z)
     {
