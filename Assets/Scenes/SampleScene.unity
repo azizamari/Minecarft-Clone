@@ -199,50 +199,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seed: 7489256
+  biome: {fileID: 11400000, guid: 2f7a33ffee6eb4a439fbee618a45c4d0, type: 2}
   player: {fileID: 1687258585}
   spawnPosition: {x: 0, y: 0, z: 0}
   material: {fileID: 2100000, guid: dc2d3b1cd94369d4b8c55459d04e08fb, type: 2}
-  blockTypes:
-  - name: air
+  blocktypes:
+  - blockName: air
     isSolid: 0
-    backFaceTexure: 0
-    frontFaceTexure: 0
-    topFaceTexure: 0
-    bottomFaceTexure: 0
-    leftFaceTexure: 0
-    rightFaceTexure: 0
-  - name: bedrock
+    backFaceTexture: 0
+    frontFaceTexture: 0
+    topFaceTexture: 0
+    bottomFaceTexture: 0
+    leftFaceTexture: 0
+    rightFaceTexture: 0
+  - blockName: bedrock
     isSolid: 1
-    backFaceTexure: 9
-    frontFaceTexure: 9
-    topFaceTexure: 9
-    bottomFaceTexure: 9
-    leftFaceTexure: 9
-    rightFaceTexure: 9
-  - name: stone
+    backFaceTexture: 9
+    frontFaceTexture: 9
+    topFaceTexture: 9
+    bottomFaceTexture: 9
+    leftFaceTexture: 9
+    rightFaceTexture: 9
+  - blockName: stone
     isSolid: 1
-    backFaceTexure: 0
-    frontFaceTexure: 0
-    topFaceTexure: 0
-    bottomFaceTexure: 0
-    leftFaceTexure: 0
-    rightFaceTexure: 0
-  - name: grass
+    backFaceTexture: 0
+    frontFaceTexture: 0
+    topFaceTexture: 0
+    bottomFaceTexture: 0
+    leftFaceTexture: 0
+    rightFaceTexture: 0
+  - blockName: grass
     isSolid: 1
-    backFaceTexure: 2
-    frontFaceTexure: 2
-    topFaceTexure: 7
-    bottomFaceTexure: 1
-    leftFaceTexure: 2
-    rightFaceTexure: 2
-  - name: dirt
+    backFaceTexture: 2
+    frontFaceTexture: 2
+    topFaceTexture: 7
+    bottomFaceTexture: 1
+    leftFaceTexture: 2
+    rightFaceTexture: 2
+  - blockName: sand
     isSolid: 1
-    backFaceTexure: 1
-    frontFaceTexure: 1
-    topFaceTexure: 1
-    bottomFaceTexure: 1
-    leftFaceTexure: 1
-    rightFaceTexure: 1
+    backFaceTexture: 10
+    frontFaceTexture: 10
+    topFaceTexture: 10
+    bottomFaceTexture: 10
+    leftFaceTexture: 10
+    rightFaceTexture: 10
+  - blockName: dirt
+    isSolid: 1
+    backFaceTexture: 1
+    frontFaceTexture: 1
+    topFaceTexture: 1
+    bottomFaceTexture: 1
+    leftFaceTexture: 1
+    rightFaceTexture: 1
 --- !u!4 &672706646
 Transform:
   m_ObjectHideFlags: 0
@@ -375,13 +384,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!114 &1687258586
 MonoBehaviour:
   m_ObjectHideFlags: 0
