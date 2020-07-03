@@ -26,7 +26,7 @@ public class World : MonoBehaviour
 
         Random.InitState(seed);
 
-        spawnPosition = new Vector3((VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f, VoxelData.ChunkHeight + 2f, (VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f);
+        spawnPosition = new Vector3((VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f, VoxelData.ChunkHeight - 50, (VoxelData.WorldSizeInChunks * VoxelData.ChunkWidth) / 2f);
         GenerateWorld();
         playerLastChunkCoord = GetChunkCoordFromVector3(player.position);
 
@@ -39,8 +39,8 @@ public class World : MonoBehaviour
         playerChunkCoord = GetChunkCoordFromVector3(player.position);
 
         // Only update the chunks if the player has moved from the chunk they were previously on.
-        if (!playerChunkCoord.Equals(playerLastChunkCoord))
-            CheckViewDistance();
+        //if (!playerChunkCoord.Equals(playerLastChunkCoord))
+          //  CheckViewDistance();
 
 
     }
@@ -114,6 +114,19 @@ public class World : MonoBehaviour
         foreach (ChunkCoord c in previouslyActiveChunks)
             chunks[c.x, c.z].isActive = false;
 
+    }
+    public bool CheckForVoxel(float x,float y, float z)
+    {
+        int xCheck = Mathf.FloorToInt(x);
+        int yCheck = Mathf.FloorToInt(y);
+        int zCheck = Mathf.FloorToInt(z);
+
+        int xChunk = xCheck / VoxelData.ChunkWidth;
+        int zChunk = zCheck / VoxelData.ChunkWidth;
+
+        xCheck -= (xChunk * VoxelData.ChunkWidth);
+        zCheck -= (zChunk * VoxelData.ChunkWidth);
+        return blocktypes[chunks[xChunk, zChunk].voxelMap[xCheck,yCheck,zCheck]].isSolid;
     }
 
     public byte GetVoxel(Vector3 pos)
@@ -240,5 +253,4 @@ public class BlockType
         }
 
     }
-
 }
