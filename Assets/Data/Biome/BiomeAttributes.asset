@@ -21,7 +21,7 @@ MonoBehaviour:
     blockID: 5
     minHeight: 1
     maxHeight: 255
-    scale: 0.1
+    scale: 0.6
     threshold: 0.5
     noiseOffset: 0
   - nodeName: sand
