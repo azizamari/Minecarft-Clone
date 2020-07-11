@@ -23,6 +23,8 @@ public class World : MonoBehaviour
 
     List<ChunkCoord> chunksToCreate = new List<ChunkCoord>();
     private bool isCreatingChunks;
+
+    public GameObject debugScreen;
     private void Start()
     {
 
@@ -47,7 +49,10 @@ public class World : MonoBehaviour
         {
             StartCoroutine(CreateChunks());
         }
-
+        if (Input.GetKeyDown(KeyCode.F3))
+        {
+            debugScreen.SetActive(!debugScreen.activeSelf);
+        }
     }
 
     IEnumerator CreateChunks()
