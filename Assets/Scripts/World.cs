@@ -18,7 +18,7 @@ public class World : MonoBehaviour
     Chunk[,] chunks = new Chunk[VoxelData.WorldSizeInChunks, VoxelData.WorldSizeInChunks];
 
     List<ChunkCoord> activeChunks = new List<ChunkCoord>();
-    ChunkCoord playerChunkCoord;
+    public ChunkCoord playerChunkCoord;
     ChunkCoord playerLastChunkCoord;
 
     List<ChunkCoord> chunksToCreate = new List<ChunkCoord>();

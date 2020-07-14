@@ -29,7 +29,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        Screen.lockCursor = true;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         cam = GameObject.Find("Main Camera").transform;
         world = GameObject.Find("World").GetComponent<World>();
 
