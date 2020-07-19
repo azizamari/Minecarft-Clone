@@ -27,6 +27,11 @@ public class Player : MonoBehaviour
     private float verticalMomentum = 0;
     private bool jumpRequest;
 
+    public Transform highlightBlock;
+    public Transform placeBlock;
+    public float checkIncrement = 0.1f;
+    public float reach = 8f;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -111,7 +116,11 @@ public class Player : MonoBehaviour
             jumpRequest = true;
 
     }
-
+    private void placeCursorBlocks()
+    {
+        float stap = checkIncrement;
+        Vector3 lastPos=new Vector3();
+    }
     private float checkDownSpeed(float downSpeed)
     {
 
