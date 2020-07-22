@@ -1181,6 +1181,8 @@ MonoBehaviour:
   placeBlock: {fileID: 903251104}
   checkIncrement: 0.1
   reach: 8
+  selectedBlockText: {fileID: 1958661430}
+  selectedBlockIndex: 1
 --- !u!1 &1958661428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1193,7 +1195,7 @@ GameObject:
   - component: {fileID: 1958661431}
   - component: {fileID: 1958661430}
   m_Layer: 5
-  m_Name: Text
+  m_Name: select block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
