@@ -135,11 +135,21 @@ public class Chunk
 
         voxelMap[xCheck, yCheck, zCheck] = newID;
 
+        UpdateSurroundingVoxels(xCheck,yCheck,zCheck);
+
         UpdateChunk();
     }
     void UpdateSurroundingVoxels(int x,int y,int z)
     {
         Vector3 thisVoxel = new Vector3(x,y,z);
+        for (int p=0;p<6;p++)
+        {
+            Vector3 currentVoxel = thisVoxel + VoxelData.faceChecks[p];
+            if (!IsVoxelInChunk((int)currentVoxel.x, (int)currentVoxel.y, (int)currentVoxel.z))
+            {
+                world.GetChunkfromVector3(currentVoxel + position).UpdateChunk();
+            }
+        }
     }
     public byte GetVoxelFromGloabalVector3(Vector3 pos)
     {

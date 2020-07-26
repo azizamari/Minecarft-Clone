@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
     {
 
         GetPlayerInputs();
-
+        placeCursorBlocks();
     }
 
     void Jump()
@@ -131,6 +131,20 @@ public class Player : MonoBehaviour
                 selectedBlockIndex = (byte)(world.blocktypes.Length-1);
             selectedBlockText.text = world.blocktypes[selectedBlockIndex].blockName+" block selected";
         }
+        if (highlightBlock.gameObject.activeSelf) 
+        {
+            if (Input.GetMouseButtonDown(0))
+            { 
+                //destory block
+                world.GetChunkfromVector3(highlightBlock.position).EditVoxel(highlightBlock.position,0);
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                //place block
+                world.GetChunkfromVector3(highlightBlock.position).EditVoxel(placeBlock.position, selectedBlockIndex);
+            }
+        }
+
 
     }
     private void placeCursorBlocks()
