@@ -349,6 +349,7 @@ MonoBehaviour:
   blocktypes:
   - blockName: air
     isSolid: 0
+    icon: {fileID: 0}
     backFaceTexture: 0
     frontFaceTexture: 0
     topFaceTexture: 0
@@ -357,6 +358,7 @@ MonoBehaviour:
     rightFaceTexture: 0
   - blockName: bedrock
     isSolid: 1
+    icon: {fileID: -4219558403781695398, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
     backFaceTexture: 9
     frontFaceTexture: 9
     topFaceTexture: 9
@@ -365,6 +367,7 @@ MonoBehaviour:
     rightFaceTexture: 9
   - blockName: stone
     isSolid: 1
+    icon: {fileID: 5679390536090785944, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
     backFaceTexture: 0
     frontFaceTexture: 0
     topFaceTexture: 0
@@ -373,6 +376,7 @@ MonoBehaviour:
     rightFaceTexture: 0
   - blockName: grass
     isSolid: 1
+    icon: {fileID: 5392753449730437660, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
     backFaceTexture: 2
     frontFaceTexture: 2
     topFaceTexture: 7
@@ -381,6 +385,7 @@ MonoBehaviour:
     rightFaceTexture: 2
   - blockName: sand
     isSolid: 1
+    icon: {fileID: 6181873364862223445, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
     backFaceTexture: 10
     frontFaceTexture: 10
     topFaceTexture: 10
@@ -389,12 +394,49 @@ MonoBehaviour:
     rightFaceTexture: 10
   - blockName: dirt
     isSolid: 1
+    icon: {fileID: -6943373833598557, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
     backFaceTexture: 1
     frontFaceTexture: 1
     topFaceTexture: 1
     bottomFaceTexture: 1
     leftFaceTexture: 1
     rightFaceTexture: 1
+  - blockName: wood
+    isSolid: 1
+    icon: {fileID: -7538633921802359561, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
+    backFaceTexture: 5
+    frontFaceTexture: 5
+    topFaceTexture: 6
+    bottomFaceTexture: 6
+    leftFaceTexture: 5
+    rightFaceTexture: 5
+  - blockName: planks
+    isSolid: 1
+    icon: {fileID: -9138616440249935319, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
+    backFaceTexture: 4
+    frontFaceTexture: 4
+    topFaceTexture: 4
+    bottomFaceTexture: 4
+    leftFaceTexture: 4
+    rightFaceTexture: 4
+  - blockName: bricks
+    isSolid: 1
+    icon: {fileID: 448961105294916356, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
+    backFaceTexture: 11
+    frontFaceTexture: 11
+    topFaceTexture: 11
+    bottomFaceTexture: 11
+    leftFaceTexture: 11
+    rightFaceTexture: 11
+  - blockName: coblestone
+    isSolid: 1
+    icon: {fileID: -1501523072523359806, guid: a14dd5ce6e150e24aade682149f9bde3, type: 3}
+    backFaceTexture: 8
+    frontFaceTexture: 8
+    topFaceTexture: 8
+    bottomFaceTexture: 8
+    leftFaceTexture: 8
+    rightFaceTexture: 8
   debugScreen: {fileID: 1260339505}
 --- !u!4 &672706646
 Transform:
@@ -960,7 +1002,6 @@ RectTransform:
   m_Children:
   - {fileID: 1260339506}
   - {fileID: 514026462}
-  - {fileID: 1958661429}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1181,86 +1222,7 @@ MonoBehaviour:
   placeBlock: {fileID: 903251104}
   checkIncrement: 0.1
   reach: 8
-  selectedBlockText: {fileID: 1958661430}
   selectedBlockIndex: 1
---- !u!1 &1958661428
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1958661429}
-  - component: {fileID: 1958661431}
-  - component: {fileID: 1958661430}
-  m_Layer: 5
-  m_Name: select block
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1958661429
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958661428}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1647204572}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 30}
-  m_Pivot: {x: 0.5, y: 0}
---- !u!114 &1958661430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958661428}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_FontData:
-    m_Font: {fileID: 12800000, guid: b399f43ec4b54184ca9457f18cb48b6f, type: 3}
-    m_FontSize: 30
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 3
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: Select block
---- !u!222 &1958661431
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1958661428}
-  m_CullTransparentMesh: 0
 --- !u!1 &2138677391
 GameObject:
   m_ObjectHideFlags: 0
